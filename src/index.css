@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html, body {
+  height: 100%;
+  font-family: 'Rubik', sans-serif;
+  font-size: 12px;
+  color: #616161;
+}
+
+#root {
+  height: 100%;
+}

@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { BurgerButton } from '../BurgerButton/BurgerButton'
 import { Container } from '../Container/Container'
 import { Logo } from '../Logo/Logo'
 import { Nav } from '../Nav/Nav'
@@ -13,6 +14,7 @@ const Header: FC<HeaderProps> = () => {
         <div className={styles.HeaderContent}>
           <Logo />
           <Nav />
+          <BurgerButton />
         </div>
       </Container>
     </div>

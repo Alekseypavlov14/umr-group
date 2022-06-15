@@ -11,7 +11,7 @@ const Nav: FC<NavProps> = () => {
   const isOpened = useSelector(isOpenedSelector)
 
   return (
-    <div className={cn(styles.Nav, isOpened && styles.Clicked)}>
+    <div className={cn(styles.Nav, isOpened && styles.Opened)}>
       <div className={styles.Nav__list}>
         <div className={styles.Nav__item}>
           <Link 

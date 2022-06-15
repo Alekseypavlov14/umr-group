@@ -1,12 +1,13 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+import cn from 'classnames'
 import styles from './Nav.module.css'
 
 interface NavProps {}
 
 const Nav: FC<NavProps> = () => {
   return (
-    <div className={styles.Nav}>
+    <div className={cn(styles.Nav, styles.Clicked)}>
       <div className={styles.Nav__list}>
         <div className={styles.Nav__item}>
           <Link 

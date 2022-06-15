@@ -1,0 +1,11 @@
+.Section {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.Image {
+  max-width: 100%;
+  margin: 0px auto;
+}

@@ -1,0 +1,85 @@
+[
+  {
+    "name": "translate/ru-ro",
+    "label": "Переклад (Російська-Румунська)",
+    "startPrice": 30,
+    "additives": [
+      {
+        "name": "outside",
+        "label": "Поза містом",
+        "price": 15
+      },
+      {
+        "name": "urgently",
+        "label": "Терміново",
+        "price": 15
+      },
+      {
+        "name": "without-transfer",
+        "label": "Без трансферу перекладача",
+        "price": 20
+      }
+    ]
+  },
+  {
+    "name": "translate/ro-en",
+    "label": "Переклад (Румунська-Англійська)",
+    "startPrice": 40,
+    "additives": [
+      {
+        "name": "urgently",
+        "label": "Терміново",
+        "price": 20
+      },
+      {
+        "name": "without-transfer",
+        "label": "Без трансферу перекладача",
+        "price": 20
+      }
+    ]
+  },
+  {
+    "name": "translate/ru-en",
+    "label": "Переклад (Російська-Англійська)",
+    "startPrice": 40,
+    "additives": [
+      {
+        "name": "outside",
+        "label": "Поза містом",
+        "price": 20
+      },
+      {
+        "name": "urgently",
+        "label": "Терміново",
+        "price": 20
+      },
+      {
+        "name": "without-transfer",
+        "label": "Без трансферу перекладача",
+        "price": 20
+      }
+    ]
+  },
+  {
+    "name": "translate/ru-en/qualified",
+    "label": "Переклад (Російська-Англійська Кваліфікований)",
+    "startPrice": 50,
+    "additives": [
+      {
+        "name": "outside",
+        "label": "Поза містом",
+        "price": 20
+      },
+      {
+        "name": "urgently",
+        "label": "Терміново",
+        "price": 20
+      },
+      {
+        "name": "without-transfer",
+        "label": "Без трансферу перекладача",
+        "price": 20
+      }
+    ]
+  }
+]

@@ -1,0 +1,63 @@
+.Order {
+  width: 100%;
+  padding: 40px 0px;
+  background: #fafcfd;
+}
+
+.OrderContent {
+  width: 100%;
+  max-width: 400px;
+  margin: 0px auto;
+}
+
+.Form {
+  width: 100%;
+}
+
+.SelectService select {
+  max-width: 100%;
+  padding: 10px;
+  font-family: 'Rubik', sans-serif;
+  border: 1px solid var(--blue-200);
+  border-radius: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+}
+
+.SelectService select::after {
+  position: absolute;
+  background: var(--blue-200);
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  top: auto;
+  bottom: auto;
+  left: 5px;
+}
+
+.Additives {
+  width: 100%;
+  padding: 40px 0px;
+}
+
+.InputContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.InputContainer:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.Input {
+  width: 30px;
+  height: 30px;
+}
+.InputLabel {
+  font-size: 16px;
+  margin-left: 10px;
+}
+

@@ -3,9 +3,11 @@
 }
 
 .TextBlock__title {
-  font-size: 44px;
+  color: #000;
+  font-size: 36px;
   font-weight: 700;
   line-height: 126%;
+  margin: 0px 0px 10px 0px;
 }
 
 /* Focused word */

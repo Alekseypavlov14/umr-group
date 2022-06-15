@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import styles from './TextBlock.module.css'
 
 interface TextBlockProps {
-  title: string,
-  content: string
+  title: ReactNode,
+  content: ReactNode
 }
 
 const TextBlock: FC<TextBlockProps> = ({

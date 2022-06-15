@@ -15,9 +15,7 @@ const Layout: FC<LayoutProps> = () => {
         <Outlet />
       </div>
 
-      <div className={styles.Footer}>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   )
 }

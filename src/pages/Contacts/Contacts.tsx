@@ -9,7 +9,7 @@ const Contacts: FC<ContactsProps> = () => {
   return (
     <div className={styles.Contacts}>
       <Container>
-        <div className={styles.Contacts}>
+        <div className={styles.Contacts__List}>
           <Contact
             socialMedia='Telegram'
             link='https://telegram.me/+380508801537'

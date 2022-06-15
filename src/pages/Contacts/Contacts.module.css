@@ -1,9 +1,13 @@
 .Contacts {
   width: 100%;
+  flex: 1 0 auto;
+  padding: 40px 0px;
+}
+
+.Contacts__List {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
-  padding: 20px 0px;
-  background: #fafcfd;
 }

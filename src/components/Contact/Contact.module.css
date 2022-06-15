@@ -3,7 +3,7 @@
   border: 1px solid var(--blue-100);
   border-radius: 10px;
   background-color: #fff;
-  flex: 0 0 30%;
+  flex: 1 1 30%;
 }
 
 .SocialMedia {

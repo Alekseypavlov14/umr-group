@@ -12,6 +12,11 @@
   font-size: 18px;
   color: var(--blue-100);
   text-decoration: none;
+  transition: color 0.3s ease 0s;
+}
+
+.Nav__link:hover {
+  color: var(--blue-200);
 }
 
 @media (max-width: 520px) {

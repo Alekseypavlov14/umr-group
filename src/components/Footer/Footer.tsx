@@ -80,22 +80,23 @@ const Footer: FC<FooterProps> = () => {
             </div>
             <div className={styles.Footer__Row}>
               Google: &nbsp;
-                <Anchor
-                  className={styles.Footer__Row__Anchor}
-                  href='mailto:aleshapavlov9@gmail.com'
-                  children='aleshapavlov9@gmail.com'
-                />
+              <Anchor
+                className={styles.Footer__Row__Anchor}
+                href='mailto:aleshapavlov9@gmail.com'
+                children='aleshapavlov9@gmail.com'
+              />
             </div>
             <div className={styles.Footer__Row}>
               GitHub: &nbsp;
-                <Anchor 
-                  className={styles.Footer__Row__Anchor}
-                  href='https://github.com/Alekseypavlov14'
-                  children='Alekseypavlov14'
-                />
+              <Anchor 
+                className={styles.Footer__Row__Anchor}
+                href='https://github.com/Alekseypavlov14'
+                children='Alekseypavlov14'
+              />
             </div>
           </div>
         </div>
+        <div className={styles.Copyright}>&copy; Aleksey Pavlov 2022</div>
       </Container>
     </div>
   )

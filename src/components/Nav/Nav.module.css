@@ -1,0 +1,14 @@
+.Nav {}
+
+.Nav__list {
+  display: flex;
+}
+
+.Nav__item:not(:last-child) {
+  margin-right: 30px;
+}
+
+.Nav__link {
+  color: var(--blue);
+  text-decoration: none;
+}

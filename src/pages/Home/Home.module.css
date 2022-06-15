@@ -1,6 +1,11 @@
-.Section {
+.Section:nth-child(odd) {
+  background: #FAFBFD;
+}
+
+.Section__Content {
   display: flex;
   align-items: center;
+  padding: 40px 0px;
   flex-wrap: wrap;
   width: 100%;
 }
@@ -8,4 +13,9 @@
 .Image {
   max-width: 100%;
   margin: 0px auto;
+}
+
+.Section_without_image div {
+  margin: 0 auto;
+  text-align: center;
 }

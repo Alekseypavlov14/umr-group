@@ -9,11 +9,25 @@ const Contacts: FC<ContactsProps> = () => {
   return (
     <div className={styles.Contacts}>
       <Container>
-        <Contact
-          socialMedia='Telegram'
-          link='https://t.me/aleshapavlov14'
-          label='@aleshapavlov14'
-        />
+        <div className={styles.Contacts}>
+          <Contact
+            socialMedia='Telegram'
+            link='https://telegram.me/+380508801537'
+            label='Andrey Shvedov'
+          />
+
+          <Contact
+            socialMedia='Google'
+            link='mailto:umr.translate.group@gmail.com'
+            label='UMR Translate Group'
+          />
+
+          <Contact
+            socialMedia='Instagram'
+            link='https://instagram.com/_andrey_shvedov_'
+            label='Andrey Shvedov'
+          />
+        </div>
       </Container>
     </div>
   )

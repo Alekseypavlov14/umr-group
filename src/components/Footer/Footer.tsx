@@ -63,8 +63,8 @@ const Footer: FC<FooterProps> = () => {
               Google: &nbsp;
               <Anchor 
                 className={styles.Footer__Row__Anchor}
-                href='mailto:umrgroup93@gmail.com'
-                children='umrgroup93@gmail.com'
+                href='mailto:umr.translate.group@gmail.com'
+                children='umr.translate.group@gmail.com'
               />
             </div>
           </div>

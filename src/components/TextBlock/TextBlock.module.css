@@ -1,0 +1,18 @@
+.TextBlock {
+  max-width: 400px;
+}
+
+.TextBlock__title {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 126%;
+}
+
+/* Focused word */
+.TextBlock__title span {
+  color: #4285f4;
+}
+
+.TextBlock__content {
+  line-height: 138.5%;
+}

@@ -2,12 +2,16 @@ import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 import styles from './Nav.module.css'
+import { useSelector } from 'react-redux'
+import { isOpenedSelector } from '../../features/menu/menuSlice'
 
 interface NavProps {}
 
 const Nav: FC<NavProps> = () => {
+  const isOpened = useSelector(isOpenedSelector)
+
   return (
-    <div className={cn(styles.Nav, styles.Clicked)}>
+    <div className={cn(styles.Nav, isOpened && styles.Clicked)}>
       <div className={styles.Nav__list}>
         <div className={styles.Nav__item}>
           <Link 

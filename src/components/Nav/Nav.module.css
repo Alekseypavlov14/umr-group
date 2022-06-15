@@ -10,7 +10,7 @@
 
 .Nav__link {
   font-size: 18px;
-  color: var(--blue);
+  color: var(--blue-100);
   text-decoration: none;
 }
 

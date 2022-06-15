@@ -1,0 +1,45 @@
+.Footer {
+  background-color: rgb(54, 55, 63);
+  padding: 20px 0px;
+}
+
+.Title {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.Footer__Columns {
+  margin-top: 28px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.Footer__Column__Title {
+  font-size: 20px;
+  color: #ddd;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.Footer__Row {
+  font-size: 16px;
+  font-weight: 300;
+  color: #ccc;
+}
+
+.Footer__Row:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.Footer__Row__Link {
+  color: #ccc;
+}
+
+.Footer__Row__Anchor {
+  text-decoration: none;
+  color: #ccc; 
+}

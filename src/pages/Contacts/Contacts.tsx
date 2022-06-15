@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { Contact } from '../../components/Contact/Contact'
 import { Container } from '../../components/Container/Container'
 import styles from './Contacts.module.css'
 
@@ -8,7 +9,11 @@ const Contacts: FC<ContactsProps> = () => {
   return (
     <div className={styles.Contacts}>
       <Container>
-        Contacts
+        <Contact
+          socialMedia='Telegram'
+          link='https://t.me/aleshapavlov14'
+          label='@aleshapavlov14'
+        />
       </Container>
     </div>
   )

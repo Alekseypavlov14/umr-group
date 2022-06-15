@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { Container } from '../Container/Container'
+import { Anchor } from '../Anchor/Anchor'
 import styles from './Footer.module.css'
 
 interface FooterProps {}
@@ -52,22 +53,18 @@ const Footer: FC<FooterProps> = () => {
             <div className={styles.Footer__Column__Title}>Компанія</div>
             <div className={styles.Footer__Row}>
               Telegram: &nbsp;
-              <a 
+              <Anchor 
                 className={styles.Footer__Row__Anchor}
                 href='https://telegram.me/+380508801537'
                 children='Андрій'
-                target='_blank'
-                rel='noreferrer'
               />
             </div>
             <div className={styles.Footer__Row}>
               Google: &nbsp;
-              <a 
+              <Anchor 
                 className={styles.Footer__Row__Anchor}
                 href='mailto:umrgroup93@gmail.com'
                 children='umrgroup93@gmail.com'
-                target='_blank'
-                rel='noreferrer'
               />
             </div>
           </div>
@@ -75,32 +72,26 @@ const Footer: FC<FooterProps> = () => {
             <div className={styles.Footer__Column__Title}>Автор</div>
             <div className={styles.Footer__Row}>
               Telegram: &nbsp;
-              <a 
+              <Anchor 
                 className={styles.Footer__Row__Anchor}
                 href='https://telegram.me/aleshapavlov14'
                 children='@aleshapavlov14'
-                target='_blank'
-                rel='noreferrer'
               />
             </div>
             <div className={styles.Footer__Row}>
               Google: &nbsp;
-                <a 
+                <Anchor
                   className={styles.Footer__Row__Anchor}
                   href='mailto:aleshapavlov9@gmail.com'
                   children='aleshapavlov9@gmail.com'
-                  target='_blank'
-                  rel='noreferrer'
                 />
             </div>
             <div className={styles.Footer__Row}>
               GitHub: &nbsp;
-                <a 
+                <Anchor 
                   className={styles.Footer__Row__Anchor}
                   href='https://github.com/Alekseypavlov14'
                   children='Alekseypavlov14'
-                  target='_blank'
-                  rel='noreferrer'
                 />
             </div>
           </div>

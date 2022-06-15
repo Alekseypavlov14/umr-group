@@ -9,7 +9,9 @@ const Header: FC<HeaderProps> = () => {
   return (
     <div className={styles.Header}>
       <Container>
-        <Logo />
+        <div className={styles.HeaderContent}>
+          <Logo />
+        </div>
       </Container>
     </div>
   )

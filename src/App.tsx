@@ -1,5 +1,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout/Layout'
+import { Home } from './pages/Home/Home'
+import { Order } from './pages/Order/Order'
+import { Contacts } from './pages/Contacts/Contacts'
+import { About } from './pages/About/About'
 import './App.css'
 
 function App() {
@@ -8,10 +12,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layout />}>
-            <Route path='/' element={<div />} />
-            <Route path='/order' element={<div />} />
-            <Route path='/about' element={<div />} />
-            <Route path='/contacts' element={<div />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/order' element={<Order />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/contacts' element={<Contacts />} />
             <Route path='*' element={<Navigate to='/' />} />
           </Route>
         </Routes>

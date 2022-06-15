@@ -8,9 +8,7 @@ interface LayoutProps {}
 const Layout: FC<LayoutProps> = () => {
   return (
     <div className={styles.Layout}>
-      <div className={styles.Header}>
-        <Header />
-      </div>
+      <Header />
 
       <div className={styles.Main}>
         <Outlet />

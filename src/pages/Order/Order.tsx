@@ -3,7 +3,6 @@ import { Container } from '../../components/Container/Container'
 import { AdditiveInput } from '../../components/AdditiveInput/AdditiveInput'
 import { Button } from '../../components/Button/Button'
 import { mailer } from '../../business/SendMail/Sendmail'
-import cn from 'classnames'
 import Select from 'react-select'
 import services from './services.json'
 import styles from './Order.module.css'
@@ -65,6 +64,20 @@ const Order: FC<OrderProps> = () => {
     return true
   }
 
+  function getDefaultDate() {
+    const now = new Date()
+
+    let day = now.getDate().toString()
+    if (day.length === 1) day = '0' + day
+
+    let month = (now.getMonth() + 1).toString()
+    if (month.length === 1) month = '0' + month
+
+    return `${now.getFullYear()}-${month}-${day}`
+  }
+
+  console.log(getDefaultDate())
+
   function setInvalidById(id: string) {
     const inputDate = document.getElementById(id) as HTMLInputElement
     inputDate.classList.add(styles.InputInvalid)
@@ -88,7 +101,7 @@ const Order: FC<OrderProps> = () => {
               <Select
                 defaultValue={convertServiceToOption(service)}
                 options={services.map(convertServiceToOption)}
-                className={styles.SelectService__Select}
+                className={styles.Select}
                 onChange={(e) => {
                   if (e) {
                     uncheckAllAdditives()
@@ -108,8 +121,11 @@ const Order: FC<OrderProps> = () => {
                   key={index}
                   additive={additive}
                   onChange={(e) => {
-                    if (e.target.checked) return setCurrentPrice(price => price + additive.price)
-                    else return setCurrentPrice(price => price - additive.price)
+                    setCurrentPrice(price => {
+                      return e.target.value 
+                        ? price + additive.price
+                        : price - additive.price
+                    })
                   }}
                 />
               ))}
@@ -119,15 +135,14 @@ const Order: FC<OrderProps> = () => {
               <div className={styles.Description}>
                 Оберіть дату:
               </div>
-              <div className={styles.SelectDate__InputBox}>
-                <input 
-                  onChange={(e) => setTime(new Date(e.target.value).getTime())}
-                  className={styles.SelectDate__Input}
-                  onFocus={(e) => removeInvalidClass(e)}
-                  id='date'
-                  type='date'
-                />
-              </div>
+              <input 
+                className={styles.Input}
+                onChange={(e) => setTime(new Date(e.target.value).getTime())}
+                onFocus={(e) => removeInvalidClass(e)}
+                value={getDefaultDate()}
+                id='date'
+                type='date'
+              />
             </div>
 
             <div className={styles.FormSection}>
@@ -140,7 +155,7 @@ const Order: FC<OrderProps> = () => {
               <textarea 
                 id='letter'
                 wrap='soft'
-                className={styles.LetterInput}
+                className={styles.Input}
                 onChange={(e) => setLetter(e.target.value)}
                 onFocus={(e) => removeInvalidClass(e)}
               />

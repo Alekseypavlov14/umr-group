@@ -10,31 +10,49 @@
   margin: 0px auto;
 }
 
+.Description {
+  margin-bottom: 14px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
 .Form {
   width: 100%;
 }
 
-.Additives {
+.SelectService,
+.Additives,
+.Letter,
+.MakeOrder {
+  padding: 20px 0px;
   width: 100%;
-  padding: 40px 0px;
 }
 
-.InputContainer {
+.LetterTip {
+  padding: 0px 0px 10px 0px;
+}
+
+.LetterInput {
   width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.InputContainer:not(:last-child) {
-  margin-bottom: 12px;
-}
-
-.Input {
-  width: 30px;
-  height: 30px;
-}
-.InputLabel {
+  min-height: 50px;
+  padding: 20px 10px;
   font-size: 16px;
-  margin-left: 10px;
+  color: inherit;
+  font-family: inherit;
+  border: 1px solid rgb(111, 110, 119);
 }
 
+.CurrentPrice {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.CurrentPrice span {
+  color: var(--blue-200);
+}
+
+.OrderButton {
+  font-size: 20px;
+}

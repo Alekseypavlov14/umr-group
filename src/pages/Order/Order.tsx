@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import { Container } from '../../components/Container/Container'
 import { AdditiveInput } from '../../components/AdditiveInput/AdditiveInput'
+import { Button } from '../../components/Button/Button'
 import Select from 'react-select'
 import services from './services.json'
 import styles from './Order.module.css'
@@ -50,6 +51,7 @@ const Order: FC<OrderProps> = () => {
         <div className={styles.OrderContent}>
           <form className={styles.Form}>
             <div className={styles.SelectService}>
+              <div className={styles.Description}>Обрати послугу:</div>
               <Select
                 defaultValue={convertServiceToOption(service)}
                 options={services.map(convertServiceToOption)}
@@ -65,6 +67,7 @@ const Order: FC<OrderProps> = () => {
             </div>
 
             <div className={styles.Additives}>
+              <div className={styles.Description}>Опції:</div>
               {service.additives.map((additive, index) => (
                 <AdditiveInput 
                   key={index}
@@ -75,6 +78,33 @@ const Order: FC<OrderProps> = () => {
                   }}
                 />
               ))}
+            </div>
+
+            <div className={styles.Letter}>
+              <div className={styles.Description}>
+                Опишіть потребу детальніше:
+              </div>
+              <div className={styles.LetterTip}>
+                * Залишіть контакти, щоб ми могли з Вами зв'язатися
+              </div>
+              <textarea 
+                wrap='soft'
+                className={styles.LetterInput}
+              />
+            </div>
+
+            <div className={styles.MakeOrder}>
+              <div className={styles.CurrentPrice}>
+                Вартість: <span>{currentPrice}</span> лей за годину
+              </div>
+              <div className={styles.OrderButton}>
+                <Button
+                  href=''
+                  onClick={(e) => {}}
+                >
+                  Замовити
+                </Button>
+              </div>
             </div>
           </form>
         </div>

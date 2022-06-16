@@ -141,8 +141,8 @@ const Order: FC<OrderProps> = () => {
                   className={styles.Input}
                   onChange={(e) => setTime(new Date(e.target.value).getTime())}
                   onFocus={(e) => removeInvalidClass(e)}
-                  min={getInputDateFormat(time)}
-                  value={getInputDateFormat(Date.now())}
+                  min={getInputDateFormat(Date.now())}
+                  value={getInputDateFormat(time)}
                   id='date'
                   type='date'
                 />

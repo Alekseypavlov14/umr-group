@@ -3,6 +3,7 @@ import { Container } from '../../components/Container/Container'
 import { AdditiveInput } from '../../components/AdditiveInput/AdditiveInput'
 import { Button } from '../../components/Button/Button'
 import { mailer } from '../../business/SendMail/Sendmail'
+import { TextBlock } from '../../components/TextBlock/TextBlock'
 import Select from 'react-select'
 import services from './services.json'
 import styles from './Order.module.css'
@@ -64,8 +65,8 @@ const Order: FC<OrderProps> = () => {
     return true
   }
 
-  function getDefaultDate() {
-    const now = new Date()
+  function getInputDateFormat(time: number) {
+    const now = new Date(time)
 
     let day = now.getDate().toString()
     if (day.length === 1) day = '0' + day
@@ -75,8 +76,6 @@ const Order: FC<OrderProps> = () => {
 
     return `${now.getFullYear()}-${month}-${day}`
   }
-
-  console.log(getDefaultDate())
 
   function setInvalidById(id: string) {
     const inputDate = document.getElementById(id) as HTMLInputElement
@@ -90,90 +89,102 @@ const Order: FC<OrderProps> = () => {
   return (
     <div className={styles.Order}>
       <Container>
-        <div className={styles.OrderContent}>
-          <form className={styles.Form}>
-            <div className={styles.FormSection}>
-              <div className={styles.Description}>Обрати послугу:</div>
-              <Select
-                defaultValue={convertServiceToOption(service)}
-                options={services.map(convertServiceToOption)}
-                className={styles.Select}
-                onChange={(e) => {
-                  if (e) {
-                    uncheckAllAdditives()
-                    const service = getServiceByName(e.value)
-                    setService(service)
-                    setCurrentPrice(service.startPrice)
-                  }
-                }}
-              />
-            </div>
-
-            <div className={styles.FormSection}>
-              <div className={styles.Description}>Опції:</div>
-              {service.additives.map((additive, index) => (
-                <AdditiveInput 
-                  key={index}
-                  additive={additive}
+        <div>
+          <div className={styles.TextContent}>
+            <TextBlock
+              title='Як це працює?'
+              content='Ви замовляєте перекладача. Коли ми його знаходимо, Ви 
+              сплачуєте його роботу, відправляючи гроші до нас. Якщо перекладач роботу виконав,
+              він отримає оплату, а інакше ми повертаємо її Вам. Це гарантує якість роботи
+              перекладача'
+            />
+          </div>
+          <div className={styles.OrderContent}>
+            <form className={styles.Form}>
+              <div className={styles.FormSection}>
+                <div className={styles.Description}>Обрати послугу:</div>
+                <Select
+                  defaultValue={convertServiceToOption(service)}
+                  options={services.map(convertServiceToOption)}
+                  className={styles.Select}
                   onChange={(e) => {
-                    if (e.target.checked) return setCurrentPrice(price => price + additive.price)
-                    else return setCurrentPrice(price => price - additive.price)
+                    if (e) {
+                      uncheckAllAdditives()
+                      const service = getServiceByName(e.value)
+                      setService(service)
+                      setCurrentPrice(service.startPrice)
+                      setTime(Date.now())
+                    }
                   }}
                 />
-              ))}
-            </div>
+              </div>
 
-            <div className={styles.FormSection}>
-              <div className={styles.Description}>
-                Оберіть дату:
+              <div className={styles.FormSection}>
+                <div className={styles.Description}>Опції:</div>
+                {service.additives.map((additive, index) => (
+                  <AdditiveInput 
+                    key={index}
+                    additive={additive}
+                    onChange={(e) => {
+                      if (e.target.checked) return setCurrentPrice(price => price + additive.price)
+                      else return setCurrentPrice(price => price - additive.price)
+                    }}
+                  />
+                ))}
               </div>
-              <input 
-                className={styles.Input}
-                onChange={(e) => setTime(new Date(e.target.value).getTime())}
-                onFocus={(e) => removeInvalidClass(e)}
-                defaultValue={getDefaultDate()}
-                min={getDefaultDate()}
-                id='date'
-                type='date'
-              />
-            </div>
 
-            <div className={styles.FormSection}>
-              <div className={styles.Description}>
-                Опишіть потребу детальніше (30-500 символів):
+              <div className={styles.FormSection}>
+                <div className={styles.Description}>
+                  Оберіть дату:
+                </div>
+                <input 
+                  className={styles.Input}
+                  onChange={(e) => setTime(new Date(e.target.value).getTime())}
+                  onFocus={(e) => removeInvalidClass(e)}
+                  min={getInputDateFormat(time)}
+                  value={getInputDateFormat(time)}
+                  id='date'
+                  type='date'
+                />
               </div>
-              <div className={styles.LetterTip}>
-                * Залишіть контакти, щоб ми могли з Вами зв'язатися
-              </div>
-              <textarea 
-                id='letter'
-                wrap='soft'
-                minLength={30}
-                maxLength={500}
-                className={styles.Input}
-                onChange={(e) => setLetter(e.target.value)}
-                onFocus={(e) => removeInvalidClass(e)}
-              />
-            </div>
 
-            <div className={styles.FormSection}>
-              <div className={styles.CurrentPrice}>
-                Вартість: <span>{currentPrice}</span> лей за годину
+              <div className={styles.FormSection}>
+                <div className={styles.Description}>
+                  Опишіть потребу детальніше (30-500 символів):
+                </div>
+                <div className={styles.LetterTip}>
+                  * Залишіть контакти, щоб ми могли з Вами зв'язатися
+                </div>
+                <textarea 
+                  id='letter'
+                  wrap='soft'
+                  minLength={30}
+                  maxLength={500}
+                  className={styles.Input}
+                  onChange={(e) => setLetter(e.target.value)}
+                  onFocus={(e) => removeInvalidClass(e)}
+                />
               </div>
-              <div className={styles.OrderButton}>
-                <Button
-                  href=''
-                  onClick={(e) => {
-                    e.preventDefault()
-                    if (!valid()) return
-                    mailer.send(letter)
-                  }}
-                >
-                  Замовити
-                </Button>
+
+              <div className={styles.FormSection}>
+                <div className={styles.CurrentPrice}>
+                  Вартість: <span>{currentPrice}</span> лей за годину
+                </div>
+                <div className={styles.OrderButton}>
+                  <Button
+                    href=''
+                    onClick={(e) => {
+                      e.preventDefault()
+                      if (!valid()) return
+                      mailer.send(letter)
+                    }}
+                  >
+                    Замовити
+                  </Button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </Container>
     </div>

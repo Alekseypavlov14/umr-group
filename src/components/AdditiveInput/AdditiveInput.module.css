@@ -1,0 +1,19 @@
+.AdditiveLabel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.AdditiveLabel:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.AdditiveCheckbox {
+  width: 30px;
+  height: 30px;
+}
+
+.AdditiveText {
+  font-size: 16px;
+  margin-left: 10px;
+}

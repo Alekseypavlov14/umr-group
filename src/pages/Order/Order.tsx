@@ -1,16 +1,28 @@
 import { FC, useEffect, useState } from 'react'
 import { Container } from '../../components/Container/Container'
+import { AdditiveInput } from '../../components/AdditiveInput/AdditiveInput'
 import Select from 'react-select'
 import services from './services.json'
 import styles from './Order.module.css'
 
 interface OrderProps {}
 
+type Service = {
+  name: string;
+  label: string;
+  startPrice: number;
+  additives: {
+    name: string;
+    label: string;
+    price: number;
+  }[];
+}
+
 const Order: FC<OrderProps> = () => {
-  const [service, setService] = useState(services[0])
+  const [service, setService] = useState<Service>(services[0])
   const [currentPrice, setCurrentPrice] = useState(service.startPrice)
 
-  function getServiceByName(name: string) {
+  function getServiceByName(name: string): Service {
     return services.filter(service => service.name === name)[0]
   }
 
@@ -19,17 +31,15 @@ const Order: FC<OrderProps> = () => {
       .map(additive => additive.name)
       .map(name => document.getElementById(name) as HTMLInputElement)
 
-    checkboxes.forEach(checkbox => {
-      if (checkbox) {
-        checkbox.checked = false
-      }
-    })
+    checkboxes.forEach(checkbox => checkbox.checked = false)
   }
 
-  useEffect(() => {
-    uncheckAllInputs()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [service])
+  function convertServiceToOption(service: Service) {
+    return ({
+      label: service.label,
+      value: service.name
+    })
+  }
 
   useEffect(() => console.log('current service', service), [service])
   useEffect(() => console.log('current price', currentPrice), [currentPrice])
@@ -41,13 +51,11 @@ const Order: FC<OrderProps> = () => {
           <form className={styles.Form}>
             <div className={styles.SelectService}>
               <Select
-                defaultValue={{ label: service.label, value: service.name }}
-                options={services.map((service, index) => ({
-                  value: service.name,
-                  label: service.label
-                }))}
+                defaultValue={convertServiceToOption(service)}
+                options={services.map(convertServiceToOption)}
                 onChange={(e) => {
                   if (e) {
+                    uncheckAllInputs()
                     const service = getServiceByName(e.value)
                     setService(service)
                     setCurrentPrice(service.startPrice)
@@ -58,26 +66,14 @@ const Order: FC<OrderProps> = () => {
 
             <div className={styles.Additives}>
               {service.additives.map((additive, index) => (
-                <label 
-                  htmlFor={additive.name} 
-                  className={styles.InputContainer} 
+                <AdditiveInput 
                   key={index}
-                >
-                  <input 
-                    id={additive.name}
-                    key={index}
-                    className={styles.Input}
-                    type='checkbox'
-                    name={additive.name} 
-                    onChange={(e) => {
-                      if (e.target.checked) return setCurrentPrice(price => price + additive.price)
-                      else return setCurrentPrice(price => price - additive.price)
-                    }}
-                  />
-                  <div className={styles.InputLabel}>
-                    {additive.label}
-                  </div>
-                </label>
+                  additive={additive}
+                  onChange={(e) => {
+                    if (e.target.checked) return setCurrentPrice(price => price + additive.price)
+                    else return setCurrentPrice(price => price - additive.price)
+                  }}
+                />
               ))}
             </div>
           </form>

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, FocusEvent } from 'react'
+import { FC, useState, FocusEvent } from 'react'
 import { Container } from '../../components/Container/Container'
 import { AdditiveInput } from '../../components/AdditiveInput/AdditiveInput'
 import { Button } from '../../components/Button/Button'
@@ -87,10 +87,6 @@ const Order: FC<OrderProps> = () => {
     e.target.classList.remove(styles.InputInvalid)
   }
 
-  useEffect(() => console.log('current service', service), [service])
-  useEffect(() => console.log('current price', currentPrice), [currentPrice])
-  useEffect(() => console.log('current time', time), [time])
-
   return (
     <div className={styles.Order}>
       <Container>
@@ -105,7 +101,6 @@ const Order: FC<OrderProps> = () => {
                 onChange={(e) => {
                   if (e) {
                     uncheckAllAdditives()
-
                     const service = getServiceByName(e.value)
                     setService(service)
                     setCurrentPrice(service.startPrice)
@@ -121,11 +116,8 @@ const Order: FC<OrderProps> = () => {
                   key={index}
                   additive={additive}
                   onChange={(e) => {
-                    setCurrentPrice(price => {
-                      return e.target.value 
-                        ? price + additive.price
-                        : price - additive.price
-                    })
+                    if (e.target.checked) return setCurrentPrice(price => price + additive.price)
+                    else return setCurrentPrice(price => price - additive.price)
                   }}
                 />
               ))}
@@ -139,7 +131,8 @@ const Order: FC<OrderProps> = () => {
                 className={styles.Input}
                 onChange={(e) => setTime(new Date(e.target.value).getTime())}
                 onFocus={(e) => removeInvalidClass(e)}
-                value={getDefaultDate()}
+                defaultValue={getDefaultDate()}
+                min={getDefaultDate()}
                 id='date'
                 type='date'
               />
@@ -155,6 +148,8 @@ const Order: FC<OrderProps> = () => {
               <textarea 
                 id='letter'
                 wrap='soft'
+                minLength={30}
+                maxLength={500}
                 className={styles.Input}
                 onChange={(e) => setLetter(e.target.value)}
                 onFocus={(e) => removeInvalidClass(e)}
@@ -170,7 +165,6 @@ const Order: FC<OrderProps> = () => {
                   href=''
                   onClick={(e) => {
                     e.preventDefault()
-
                     if (!valid()) return
                     mailer.send(letter)
                   }}

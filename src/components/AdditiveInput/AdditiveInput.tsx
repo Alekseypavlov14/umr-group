@@ -15,10 +15,7 @@ const AdditiveInput: FC<AdditiveInputProps> = ({
   onChange
 }) => {
   return (
-    <label 
-      htmlFor={additive.name} 
-      className={styles.AdditiveLabel} 
-    >
+    <div className={styles.AdditiveContainer}>
       <input 
         id={additive.name}
         className={styles.AdditiveCheckbox}
@@ -26,10 +23,21 @@ const AdditiveInput: FC<AdditiveInputProps> = ({
         name={additive.name} 
         onChange={onChange}
       />
-      <div className={styles.AdditiveText}>
+      
+      <label 
+        className={styles.AdditiveCheckboxVisible}
+        htmlFor={additive.name} 
+      >
+        <div className={styles.AdditiveIndicator} />
+      </label>
+
+      <label 
+        className={styles.AdditiveText}
+        htmlFor={additive.name}
+      >
         {additive.label}
-      </div>
-    </label>
+      </label>
+    </div>
   )
 }
 

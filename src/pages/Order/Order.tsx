@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import { Container } from '../../components/Container/Container'
 import { AdditiveInput } from '../../components/AdditiveInput/AdditiveInput'
 import { Button } from '../../components/Button/Button'
+import { mailer } from '../../business/SendMail/Sendmail'
 import Select from 'react-select'
 import services from './services.json'
 import styles from './Order.module.css'
@@ -22,6 +23,7 @@ type Service = {
 const Order: FC<OrderProps> = () => {
   const [service, setService] = useState<Service>(services[0])
   const [currentPrice, setCurrentPrice] = useState(service.startPrice)
+  const [letter, setLetter] = useState('')
 
   function getServiceByName(name: string): Service {
     return services.filter(service => service.name === name)[0]
@@ -89,7 +91,10 @@ const Order: FC<OrderProps> = () => {
               </div>
               <textarea 
                 wrap='soft'
+                minLength={30}
+                maxLength={500}
                 className={styles.LetterInput}
+                onChange={(e) => setLetter(e.target.value)}
               />
             </div>
 
@@ -100,7 +105,7 @@ const Order: FC<OrderProps> = () => {
               <div className={styles.OrderButton}>
                 <Button
                   href=''
-                  onClick={(e) => {}}
+                  onClick={() => mailer.send(letter)}
                 >
                   Замовити
                 </Button>

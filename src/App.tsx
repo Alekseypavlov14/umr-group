@@ -4,6 +4,7 @@ import { Home } from './pages/Home/Home'
 import { Order } from './pages/Order/Order'
 import { Contacts } from './pages/Contacts/Contacts'
 import { About } from './pages/About/About'
+import { Translators } from './pages/Translators/Translators'
 import './App.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path='/' element={<Layout />}>
             <Route path='/' element={<Home />} />
             <Route path='/order' element={<Order />} />
+            <Route path='/translators' element={<Translators />} />
             <Route path='/about' element={<About />} />
             <Route path='/contacts' element={<Contacts />} />
             <Route path='*' element={<Navigate to='/' />} />

@@ -34,6 +34,14 @@ const Nav: FC<NavProps> = () => {
           <Link 
             onClick={() => dispatch(close())}
             className={styles.Nav__link} 
+            children='Перекладачі'
+            to='/translators'
+          />
+        </div>
+        <div className={styles.Nav__item}>
+          <Link 
+            onClick={() => dispatch(close())}
+            className={styles.Nav__link} 
             children='О нас'
             to='/about'
           />

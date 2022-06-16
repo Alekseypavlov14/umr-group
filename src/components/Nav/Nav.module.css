@@ -19,7 +19,7 @@
   color: var(--blue-200);
 }
 
-@media (max-width: 520px) {
+@media (max-width: 767.98px) {
   .Nav {
     position: fixed;
     width: 100%;

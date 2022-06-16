@@ -35,6 +35,14 @@ const Footer: FC<FooterProps> = () => {
             <div className={styles.Footer__Row}>
               <Link 
                 className={styles.Footer__Row__Link} 
+                to='/translators'
+              >
+                Перекладачі
+              </Link>
+            </div>
+            <div className={styles.Footer__Row}>
+              <Link 
+                className={styles.Footer__Row__Link} 
                 to='/about'
               >
                 О нас

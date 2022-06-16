@@ -1,0 +1,16 @@
+.Translators {
+  padding: 40px 0px;
+}
+
+.TranslatorsContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-around;
+}
+
+.ButtonBlock {
+  flex: 1 0 100%;
+  font-size: 28px;
+  text-align: center;
+}

@@ -142,7 +142,7 @@ const Order: FC<OrderProps> = () => {
                   onChange={(e) => setTime(new Date(e.target.value).getTime())}
                   onFocus={(e) => removeInvalidClass(e)}
                   min={getInputDateFormat(time)}
-                  value={getInputDateFormat(time)}
+                  value={getInputDateFormat(Date.now())}
                   id='date'
                   type='date'
                 />

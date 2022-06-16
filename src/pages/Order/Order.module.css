@@ -1,6 +1,6 @@
 .Order {
   width: 100%;
-  padding: 40px 0px;
+  padding: 20px 0px;
   background: #fafcfd;
 }
 
@@ -20,12 +20,28 @@
   width: 100%;
 }
 
-.SelectService,
-.Additives,
-.Letter,
-.MakeOrder {
+.FormSection {
   padding: 20px 0px;
   width: 100%;
+}
+
+.SelectService__Select {
+  font-size: 16px;
+  font-family: 'Rubik', sans-serif;
+}
+
+.SelectDate__Input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgb(111, 110, 119);
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: 'Rubik', sans-serif;
+}
+
+.InputInvalid {
+  border: 1px solid rgb(111, 110, 119);
+  box-shadow: 0px 0px 5px 5px rgba(255, 0, 0, 0.3);
 }
 
 .LetterTip {
@@ -39,13 +55,15 @@
   font-size: 16px;
   color: inherit;
   font-family: inherit;
+  resize: none;
   border: 1px solid rgb(111, 110, 119);
+  border-radius: 10px;
 }
 
 .CurrentPrice {
   font-size: 22px;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
   letter-spacing: 0.5px;
 }
 

@@ -1,4 +1,4 @@
-import { FC, useState, FocusEvent } from 'react'
+import { FC, useState, FocusEvent, useEffect } from 'react'
 import { Container } from '../../components/Container/Container'
 import { AdditiveInput } from '../../components/AdditiveInput/AdditiveInput'
 import { Button } from '../../components/Button/Button'
@@ -7,6 +7,7 @@ import { TextBlock } from '../../components/TextBlock/TextBlock'
 import Select from 'react-select'
 import services from './services.json'
 import styles from './Order.module.css'
+import { useToggle } from '../../hooks/useToggle'
 
 interface OrderProps {}
 
@@ -24,8 +25,44 @@ type Service = {
 const Order: FC<OrderProps> = () => {
   const [service, setService] = useState<Service>(services[0])
   const [currentPrice, setCurrentPrice] = useState(service.startPrice)
+  const [isUrgently, setUrgently] = useToggle(true)
   const [time, setTime] = useState(Date.now())
   const [letter, setLetter] = useState('')
+
+  useEffect(() => {
+    updateUrgently(time)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [time])
+
+  function updateUrgently(time: number) {
+    // TWO days period is urgently
+    const URGENTLY = 2 * 24 * 3600 * 1000
+
+    if (time - Date.now() < URGENTLY) {
+      setUrgently(true)
+    } else {
+      setUrgently(false)
+    }
+  }
+
+  useEffect(() => {
+    console.log(isUrgently)
+
+    if (isUrgently) {
+      setCurrentPrice(price => price + 20)
+    } else {
+      setCurrentPrice(price => price - 20)
+    }
+  }, [isUrgently])
+
+  useEffect(() => {
+    // fix bag with double adding of price
+    return () => setCurrentPrice(price => price - 20)
+  }, [])
+
+  useEffect(() => {
+    console.log(currentPrice)
+  }, [currentPrice])
 
   function getServiceByName(name: string): Service {
     return services.filter(service => service.name === name)[0]
@@ -49,6 +86,7 @@ const Order: FC<OrderProps> = () => {
   function valid(): boolean {
     const problems: string[] = []
 
+    // validation of date
     if (time - Date.now() < 0) {
       if (new Date().getDay() !== new Date(time).getDay()) {
         setInvalidById('date')
@@ -56,6 +94,13 @@ const Order: FC<OrderProps> = () => {
       }
     }
 
+    const dateInput = document.getElementById('date') as HTMLInputElement
+    if (!Date.parse(dateInput.value)) {
+      setInvalidById('date')
+      problems.push('date')
+    }
+
+    // validation of letter
     if (letter.length < 30 || letter.length > 500) {
       setInvalidById('letter')
       problems.push('letter')

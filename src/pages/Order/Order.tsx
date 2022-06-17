@@ -34,17 +34,6 @@ const Order: FC<OrderProps> = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time])
 
-  function updateUrgently(time: number) {
-    // TWO days period is urgently
-    const URGENTLY = 2 * 24 * 3600 * 1000
-
-    if (time - Date.now() < URGENTLY) {
-      setUrgently(true)
-    } else {
-      setUrgently(false)
-    }
-  }
-
   useEffect(() => {
     if (isUrgently) {
       setCurrentPrice(price => price + 20)
@@ -57,6 +46,17 @@ const Order: FC<OrderProps> = () => {
     // fix bag with double adding of price
     return () => setCurrentPrice(price => price - 20)
   }, [])
+
+  function updateUrgently(time: number) {
+    // TWO days period is urgently
+    const URGENTLY = 2 * 24 * 3600 * 1000
+
+    if (time - Date.now() < URGENTLY) {
+      setUrgently(true)
+    } else {
+      setUrgently(false)
+    }
+  }
 
   function getServiceByName(name: string): Service {
     return services.filter(service => service.name === name)[0]
@@ -147,13 +147,12 @@ const Order: FC<OrderProps> = () => {
                   options={services.map(convertServiceToOption)}
                   className={styles.Select}
                   onChange={(e) => {
-                    if (e) {
-                      uncheckAllAdditives()             
-                      const service = getServiceByName(e.value)
-                      setService(service)
-                      setCurrentPrice(service.startPrice + 20)
-                      setTime(Date.now())
-                    }
+                    if (!e) return
+                    uncheckAllAdditives()             
+                    const service = getServiceByName(e.value)
+                    setService(service)
+                    setCurrentPrice(service.startPrice + 20)
+                    setTime(Date.now())
                   }}
                 />
               </div>

@@ -4,10 +4,10 @@ import { AdditiveInput } from '../../components/AdditiveInput/AdditiveInput'
 import { Button } from '../../components/Button/Button'
 import { mailer } from '../../business/SendMail/Sendmail'
 import { TextBlock } from '../../components/TextBlock/TextBlock'
+import { useToggle } from '../../hooks/useToggle'
 import Select from 'react-select'
 import services from './services.json'
 import styles from './Order.module.css'
-import { useToggle } from '../../hooks/useToggle'
 
 interface OrderProps {}
 
@@ -46,8 +46,6 @@ const Order: FC<OrderProps> = () => {
   }
 
   useEffect(() => {
-    console.log(isUrgently)
-
     if (isUrgently) {
       setCurrentPrice(price => price + 20)
     } else {
@@ -59,10 +57,6 @@ const Order: FC<OrderProps> = () => {
     // fix bag with double adding of price
     return () => setCurrentPrice(price => price - 20)
   }, [])
-
-  useEffect(() => {
-    console.log(currentPrice)
-  }, [currentPrice])
 
   function getServiceByName(name: string): Service {
     return services.filter(service => service.name === name)[0]
@@ -154,10 +148,10 @@ const Order: FC<OrderProps> = () => {
                   className={styles.Select}
                   onChange={(e) => {
                     if (e) {
-                      uncheckAllAdditives()
+                      uncheckAllAdditives()             
                       const service = getServiceByName(e.value)
                       setService(service)
-                      setCurrentPrice(service.startPrice)
+                      setCurrentPrice(service.startPrice + 20)
                       setTime(Date.now())
                     }
                   }}

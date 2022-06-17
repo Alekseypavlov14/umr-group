@@ -7,7 +7,7 @@
 .TextContent {
   padding: 20px 0px;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 40px;
   background-color: #fafcfd;

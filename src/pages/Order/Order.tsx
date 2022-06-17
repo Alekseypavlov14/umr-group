@@ -128,113 +128,113 @@ const Order: FC<OrderProps> = () => {
   return (
     <div className={styles.Order}>
       <Container>
-        <div>
-          <div className={styles.TextContent}>
-            <TextBlock
-              title='Як це працює?'
-              content='Ви замовляєте перекладача. Коли ми його знаходимо, Ви 
-              сплачуєте його роботу, відправляючи гроші до нас. Якщо перекладач роботу виконав,
-              він отримає оплату, а інакше ми повертаємо її Вам. Це гарантує якість роботи
-              перекладача'
-            />
-            <TextBlock
-              title={<>Як ми рахуємо <span>вартість</span>?</>}
-              content='Для кожного виду послуг є початкова вартість за годину роботи перекладача.
-              Вартість є більшою, якщо Вам потрібен робітник на найближчі 2 дні, адже знайти
-              перекладача буде важче. Також ціна є більшою, якщо Вам потрібен перекладач поза містом.
-              Якщо Ви можете підвезти робітника до необхідного місця, вартість замовлення буде нижче'
-            />
-          </div>
-          <div className={styles.OrderContent}>
-            <div className={styles.OrderHeadline}>
-              Зробити замовлення
-            </div>
-            <form className={styles.Form}>
-              <div className={styles.FormSection}>
-                <div className={styles.Description}>Обрати послугу:</div>
-                <Select
-                  defaultValue={convertServiceToOption(service)}
-                  options={services.map(convertServiceToOption)}
-                  className={styles.Select}
-                  onChange={(e) => {
-                    if (!e) return
-                    uncheckAllAdditives()             
-                    const service = getServiceByName(e.value)
-                    setService(service)
-                    setCurrentPrice(service.startPrice + 20)
-                    setTime(Date.now())
-                  }}
-                />
-              </div>
-
-              <div className={styles.FormSection}>
-                <div className={styles.Description}>Опції:</div>
-                {service.additives.map((additive, index) => (
-                  <AdditiveInput 
-                    key={index}
-                    additive={additive}
-                    onChange={(e) => {
-                      if (e.target.checked) return setCurrentPrice(price => price + additive.price)
-                      else return setCurrentPrice(price => price - additive.price)
-                    }}
-                  />
-                ))}
-              </div>
-
-              <div className={styles.FormSection}>
-                <div className={styles.Description}>
-                  Оберіть дату:
-                </div>
-                <input 
-                  className={styles.Input}
-                  onChange={(e) => setTime(new Date(e.target.value).getTime())}
-                  onFocus={(e) => removeInvalidClass(e)}
-                  min={getInputDateFormat(Date.now())}
-                  value={getInputDateFormat(time)}
-                  id='date'
-                  type='date'
-                />
-              </div>
-
-              <div className={styles.FormSection}>
-                <div className={styles.Description}>
-                  Опишіть потребу детальніше (30-500 символів):
-                </div>
-                <div className={styles.LetterTip}>
-                  * Залишіть контакти, щоб ми могли з Вами зв'язатися
-                </div>
-                <textarea 
-                  id='letter'
-                  wrap='soft'
-                  minLength={30}
-                  maxLength={500}
-                  className={styles.Input}
-                  onChange={(e) => setLetter(e.target.value)}
-                  onFocus={(e) => removeInvalidClass(e)}
-                />
-              </div>
-
-              <div className={styles.FormSection}>
-                <div className={styles.CurrentPrice}>
-                  Вартість: <span>{currentPrice}</span> лей за годину
-                </div>
-                <div className={styles.OrderButton}>
-                  <Button
-                    href=''
-                    onClick={(e) => {
-                      e.preventDefault()
-                      if (!valid()) return
-                      mailer.send(letter)
-                    }}
-                  >
-                    Замовити
-                  </Button>
-                </div>
-              </div>
-            </form>
-          </div>
+        <div className={styles.TextContent}>
+          <TextBlock
+            title='Як це працює?'
+            content='Ви замовляєте перекладача. Коли ми його знаходимо, Ви 
+            сплачуєте його роботу, відправляючи гроші до нас. Якщо перекладач роботу виконав,
+            він отримає оплату, а інакше ми повертаємо її Вам. Це гарантує якість роботи
+            перекладача'
+          />
+          <TextBlock
+            title={<>Як ми рахуємо <span>вартість</span>?</>}
+            content='Для кожного виду послуг є початкова вартість за годину роботи перекладача.
+            Вартість є більшою, якщо Вам потрібен робітник на найближчі 2 дні, адже знайти
+            перекладача буде важче. Також ціна є більшою, якщо Вам потрібен перекладач поза містом.
+            Якщо Ви можете підвезти робітника до необхідного місця, вартість замовлення буде нижче'
+          />
         </div>
       </Container>
+      <div className={styles.OrderContent}>
+        <Container>
+          <div className={styles.OrderHeadline}>
+            Зробити замовлення
+          </div>
+          <form className={styles.Form}>
+            <div className={styles.FormSection}>
+              <div className={styles.Description}>Обрати послугу:</div>
+              <Select
+                defaultValue={convertServiceToOption(service)}
+                options={services.map(convertServiceToOption)}
+                className={styles.Select}
+                onChange={(e) => {
+                  if (!e) return
+                  uncheckAllAdditives()             
+                  const service = getServiceByName(e.value)
+                  setService(service)
+                  setCurrentPrice(service.startPrice + 20)
+                  setTime(Date.now())
+                }}
+              />
+            </div>
+  
+            <div className={styles.FormSection}>
+              <div className={styles.Description}>Опції:</div>
+              {service.additives.map((additive, index) => (
+                <AdditiveInput 
+                  key={index}
+                  additive={additive}
+                  onChange={(e) => {
+                    if (e.target.checked) return setCurrentPrice(price => price + additive.price)
+                    else return setCurrentPrice(price => price - additive.price)
+                  }}
+                />
+              ))}
+            </div>
+  
+            <div className={styles.FormSection}>
+              <div className={styles.Description}>
+                Оберіть дату:
+              </div>
+              <input 
+                className={styles.Input}
+                onChange={(e) => setTime(new Date(e.target.value).getTime())}
+                onFocus={(e) => removeInvalidClass(e)}
+                min={getInputDateFormat(Date.now())}
+                value={getInputDateFormat(time)}
+                id='date'
+                type='date'
+              />
+            </div>
+  
+            <div className={styles.FormSection}>
+              <div className={styles.Description}>
+                Опишіть потребу детальніше (30-500 символів):
+              </div>
+              <div className={styles.LetterTip}>
+                * Залишіть контакти, щоб ми могли з Вами зв'язатися
+              </div>
+              <textarea 
+                id='letter'
+                wrap='soft'
+                minLength={30}
+                maxLength={500}
+                className={styles.Input}
+                onChange={(e) => setLetter(e.target.value)}
+                onFocus={(e) => removeInvalidClass(e)}
+              />
+            </div>
+  
+            <div className={styles.FormSection}>
+              <div className={styles.CurrentPrice}>
+                Вартість: <span>{currentPrice}</span> лей за годину
+              </div>
+              <div className={styles.OrderButton}>
+                <Button
+                  href=''
+                  onClick={(e) => {
+                    e.preventDefault()
+                    if (!valid()) return
+                    mailer.send(letter)
+                  }}
+                >
+                  Замовити
+                </Button>
+              </div>
+            </div>
+          </form>
+        </Container>
+      </div>
     </div>
   )
 }

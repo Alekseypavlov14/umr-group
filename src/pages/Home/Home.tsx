@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { TextBlock } from '../../components/TextBlock/TextBlock'
 import { Section } from '../../components/Section/Section'
+import { Link } from 'react-router-dom'
 import image from './../../assets/images/translator.png'
 import styles from './Home.module.css'
 
@@ -24,11 +25,18 @@ const Home: FC<HomeProps> = () => {
       </Section>
 
       <Section withoutImage>
-        <TextBlock
-          title='Які питання ми можемо допомогти вирішити?'
-          content="Наша команда пропонує два вида послуг перекладача: 
-          по телефону та на місці."
-        />
+        <div className={styles.OrderLinkContent}>
+          <TextBlock
+            title='Які питання ми можемо допомогти вирішити?'
+            content="Наша команда пропонує два вида послуг перекладача: 
+            по телефону та на місці."
+          />
+          <Link
+            to='/order' 
+            children='Замовити'
+            className={styles.OrderLink}
+          />
+        </div>
       </Section>
     </div>
   )
